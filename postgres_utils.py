@@ -10,5 +10,14 @@ class PostgresUtils:
     def connect(self, params):
         self.connection = psycopg2.connect(**params)
     
-    def add_table(self, table_name):
-        pass
+    def execute_command(self, command):
+        try:
+            curr = self.connection.cursor()
+            curr.execute(command)
+        except (Exception, psycopg2.DatabaseError) as error:
+            print (error)
+
+    def __del__(self):
+        print ("closing postgres connection object")
+        self.connection.close()
+

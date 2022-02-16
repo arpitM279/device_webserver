@@ -10,6 +10,13 @@ from config import config
 
 app = Flask(__name__)
 
+DEVICE_TABLE_STR = """
+        CREATE TABLE devices (
+            unique_id SERIAL PRIMARY KEY,
+            device_name VARCHAR(255) NOT NULL
+        )
+        """
+
 def get_curent_datetime():
     return datetime.datetime.now().strftime("%Y-%b-%d %H:%M:%S")
 
@@ -29,6 +36,8 @@ def main():
     print(conf)
     db_conn = PostgresUtils()
     db_conn.connect(conf)
+    db_conn.execute_command(DEVICE_TABLE_STR)
+
     # app.run(host="0.0.0.0", port=5050, debug=True)
     # print (get_curent_datetime())
 
