@@ -14,6 +14,7 @@ class PostgresUtils:
         try:
             curr = self.connection.cursor()
             curr.execute(command)
+            self.connection.commit()
         except (Exception, psycopg2.DatabaseError) as error:
             print (error)
 
