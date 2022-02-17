@@ -14,3 +14,11 @@ class MySQLUtils:
             print("MySQL Database connection successful")
         except Error as err:
             print(f"Error: '{err}'")
+
+    def execute_command(self, command):
+        cursor = self.connection.cursor()
+        try:
+            cursor.execute(command)
+            print("command executed successfully")
+        except Error as err:
+            print(f"Error: '{err}'")

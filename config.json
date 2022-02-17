@@ -1,6 +1,5 @@
 {
     "host" : "localhost",
-    "database" : "iot_data",
     "user" : "user",
     "passwd" : "abcd1234"
 }
