@@ -6,6 +6,7 @@ from flask import Flask
 
 
 from postgres_utils import PostgresUtils
+from mysql_utils import MySQLUtils
 from config import config
 
 app = Flask(__name__)
@@ -34,9 +35,9 @@ def add_device(device_name):
 def main():
     conf = config()
     print(conf)
-    db_conn = PostgresUtils()
-    db_conn.connect(conf)
-    db_conn.execute_command(DEVICE_TABLE_STR)
+
+    conn = MySQLUtils()
+    conn.create_server_connection(conf)
 
     # app.run(host="0.0.0.0", port=5050, debug=True)
     # print (get_curent_datetime())
